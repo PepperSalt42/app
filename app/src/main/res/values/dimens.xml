@@ -6,7 +6,7 @@
     <dimen name="message_author_image_size">40dp</dimen>
     <dimen name="message_time_width">50dp</dimen>
 
-    <dimen name="podium_number_size">30sp</dimen>
+    <dimen name="podium_number_size">40sp</dimen>
     <dimen name="keyline_05">6dp</dimen>
     <dimen name="keyline_1">12dp</dimen>
 </resources>
