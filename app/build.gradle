@@ -27,6 +27,15 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.github.bumptech.glide:glide:3.4.+'
 
+    // loading images with Picasso
+    compile 'com.squareup.picasso:picasso:2.5.2'
+
+    // binding with butterknife
+    compile 'com.jakewharton:butterknife:7.0.1'
+
+    // adapter delegates for recyclerviews
+    compile 'com.hannesdorfmann:adapterdelegates:1.0.2'
+
     // server requests and treatments
     compile "com.squareup.retrofit:retrofit:1.9.0"
     compile "com.google.code.gson:gson:2.4"
