@@ -1,7 +1,9 @@
 package com.peppersalt.peppersalt.ranking;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +33,17 @@ public class RankingFragment extends PepperSaltFragment {
   public void onViewCreated(View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     ButterKnife.bind(this, view);
-    setFakeData();
+    view.postDelayed(new Runnable() {
+      @Override
+      public void run() {
+        setFakeData();
+      }
+    }, 1000);
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
   }
 
   private void setFakeData() {
