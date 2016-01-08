@@ -1,4 +1,5 @@
 <resources>
+    <!-- default colors -->
     <color name="background_gradient_start">#000000</color>
     <color name="background_gradient_end">#DDDDDD</color>
     <color name="fastlane_background">#0096a6</color>
@@ -15,4 +16,7 @@
     <color name="orange">#FADCA7</color>
     <color name="yellow">#EEFF41</color>
     <color name="default_background">#3d3d3d</color>
+
+    <!-- PepperSalt colors -->
+    <color name="separator_colors">#DFDFDF</color>
 </resources>
