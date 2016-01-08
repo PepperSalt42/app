@@ -7,9 +7,15 @@
     >
 
     <TextView
+        android:id="@+id/question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Question fragment"
+        />
+
+    <TextView
+        android:id="@+id/answers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         />
 
 </LinearLayout>
