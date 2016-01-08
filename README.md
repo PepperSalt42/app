@@ -1,9 +1,9 @@
 # app
-<span style="text-decoration:underline">Android TV Application in Golang</span>
+Android TV Application in Golang
 
 PepperSalt application is a slack bot using slack API.
 
-<span style="text-decoration:underline">PepperSalt enabled commands </span>
+PepperSalt enabled commands
 
 `To add a question :`
     /question "question" "answer1" "answer2" ...
