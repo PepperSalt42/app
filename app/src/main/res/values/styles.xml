@@ -2,5 +2,11 @@
 <resources>
 
     <style name="AppTheme" parent="@style/Theme.Leanback">
+        <item name="android:textViewStyle">@style/PepperSalt.TextViewStyle</item>
+        <item name="android:textColor">@color/text_color</item>
+    </style>
+
+    <style name="PepperSalt.TextViewStyle" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/text_color</item>
     </style>
 </resources>

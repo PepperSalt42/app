@@ -11,6 +11,8 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:background="@color/background_fragments_color"
+        android:padding="@dimen/keyline_05"
         />
 
     <View
@@ -29,6 +31,8 @@
             android:id="@+id/announce_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/background_fragments_color"
+            android:padding="@dimen/keyline_05"
             />
 
         <View
@@ -41,6 +45,8 @@
             android:id="@+id/question_fragment"
             android:layout_width="match_parent"
             android:layout_height="@dimen/question_height"
+            android:background="@color/background_fragments_color"
+            android:padding="@dimen/keyline_05"
             />
 
         <View
@@ -53,6 +59,8 @@
             android:id="@+id/ranking_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/background_fragments_color"
+            android:padding="@dimen/keyline_05"
             />
 
     </LinearLayout>
