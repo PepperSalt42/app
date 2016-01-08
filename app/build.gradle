@@ -26,4 +26,8 @@ dependencies {
     compile 'com.android.support:leanback-v17:23.1.1'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.github.bumptech.glide:glide:3.4.+'
+
+    // server requests and treatments
+    compile "com.squareup.retrofit:retrofit:1.9.0"
+    compile "com.google.code.gson:gson:2.4"
 }
