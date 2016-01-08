@@ -1,6 +1,5 @@
 package com.peppersalt.peppersalt.messages.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -24,12 +23,10 @@ import butterknife.ButterKnife;
 public class MessageAdapterDelegate extends AbsAdapterDelegate<List<Object>> {
 
   private Context context;
-  private LayoutInflater inflater;
 
-  public MessageAdapterDelegate(Activity activity, int viewType) {
+  public MessageAdapterDelegate(View view, int viewType) {
     super(viewType);
-    this.context = activity;
-    this.inflater = activity.getLayoutInflater();
+    this.context = view.getContext();
   }
 
   @Override
@@ -40,7 +37,8 @@ public class MessageAdapterDelegate extends AbsAdapterDelegate<List<Object>> {
   @NonNull
   @Override
   public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent) {
-    return new MessageViewHolder(inflater.inflate(R.layout.fragment_messages_row, parent, false));
+    return new MessageViewHolder(LayoutInflater.from(context)
+        .inflate(R.layout.fragment_messages_row, parent, false));
   }
 
   @Override

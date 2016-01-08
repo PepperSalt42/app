@@ -25,26 +25,22 @@ public class MainFragment extends Fragment {
   public void onViewCreated(View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     FragmentManager fragmentManager = getFragmentManager();
-    Fragment messagesFragment = new MessagesFragment();
-    Fragment announceFragment = new AnnounceFragment();
-    Fragment questionFragment = new QuestionFragment();
-    Fragment rankingFragment = new RankingFragment();
 
     fragmentManager
         .beginTransaction()
-        .replace(R.id.messages_fragment, messagesFragment)
+        .replace(R.id.messages_fragment, new MessagesFragment())
         .commit();
     fragmentManager
         .beginTransaction()
-        .replace(R.id.announce_fragment, announceFragment)
+        .replace(R.id.announce_fragment, new AnnounceFragment())
         .commit();
     fragmentManager
         .beginTransaction()
-        .replace(R.id.question_fragment, questionFragment)
+        .replace(R.id.question_fragment, new QuestionFragment())
         .commit();
     fragmentManager
         .beginTransaction()
-        .replace(R.id.ranking_fragment, rankingFragment)
+        .replace(R.id.ranking_fragment, new RankingFragment())
         .commit();
   }
 }

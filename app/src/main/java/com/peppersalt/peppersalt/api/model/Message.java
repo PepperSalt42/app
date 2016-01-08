@@ -26,4 +26,16 @@ public class Message {
   public String getTime() {
     return time;
   }
+
+  public void setAuthor(Person author) {
+    this.author = author;
+  }
+
+  public void setMessage(String message) {
+    this.message = message;
+  }
+
+  public void setTime(String time) {
+    this.time = time;
+  }
 }

@@ -1,7 +1,7 @@
 package com.peppersalt.peppersalt.messages.adapter;
 
-import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.hannesdorfmann.adapterdelegates.AdapterDelegatesManager;
@@ -13,12 +13,12 @@ public class MessagesAdapter extends RecyclerView.Adapter {
   private AdapterDelegatesManager<List<Object>> manager;
   private List<Object> data;
 
-  public MessagesAdapter(Activity activity, List<Object> data) {
+  public MessagesAdapter(View view, List<Object> data) {
     this.data = data;
 
     manager = new AdapterDelegatesManager<>();
-    manager.addDelegate(new MessageLabelAdapterDelegate(activity, 0));
-    manager.addDelegate(new MessageAdapterDelegate(activity, 1));
+    manager.addDelegate(new MessageLabelAdapterDelegate(view, 0));
+    manager.addDelegate(new MessageAdapterDelegate(view, 1));
   }
 
   @Override

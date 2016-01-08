@@ -16,7 +16,7 @@ public class Person {
   private String username;
 
   @SerializedName("points")
-  private String points;
+  private int points;
 
   @SerializedName("image")
   private String imageUrl;
@@ -34,11 +34,31 @@ public class Person {
     return username;
   }
 
-  public String getPoints() {
+  public int getPoints() {
     return points;
   }
 
   public String getImageUrl() {
     return imageUrl;
+  }
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public void setPoints(int points) {
+    this.points = points;
+  }
+
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
   }
 }
