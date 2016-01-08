@@ -44,7 +44,7 @@ public class podiumView extends View {
 
   private void drawPod(Canvas canvas, int x, int y,int w,int h, String n) {
     int xn = (x + w)/2;
-    int yn = (y + h)/2;
+    int yn = (y + h)/2 - (int)(number.ascent() + number.descent())/2;
     canvas.drawRect(x, y, w, h, rectangle);
     Log.e(getClass().getName(), String.format("%d %d %d %d", x, y, w, h));
     canvas.drawText(n, xn, yn, number);
@@ -66,6 +66,7 @@ public class podiumView extends View {
     number = new Paint();
     number.setColor(getResources().getColor(R.color.white));
     number.setTextSize(getResources().getDimension(R.dimen.podium_number_size));
+    number.setTextAlign(Paint.Align.CENTER);
     invalidate();
   }
 
@@ -76,8 +77,8 @@ public class podiumView extends View {
       return ;
     }
     super.onDraw(canvas);
-    drawPod(canvas, width/2 - width/10, height/2 - height/10, width/2 + width/10, height/2 + 3*height/5, "1");
-    drawPod(canvas, width/2 - 3*width/10, height/2 + height/10, width/2 - width/10, height/2 + 3*height/5, "2");
-    drawPod(canvas, width/2 + width/10, height/2 + 3*height/20, width/2 + 3*width/10, height/2 + 3*height/5, "3");
+    drawPod(canvas, width/2 - width/10, height/2 - height/10, width/2 + width/10, height/2 + 5*height/10, "1");
+    drawPod(canvas, width/2 - 3*width/10, height/2 + height/10, width/2 - width/10, height/2 + 5*height/10, "2");
+    drawPod(canvas, width/2 + width/10, height/2 + 2*height/10, width/2 + 3*width/10, height/2 + 5*height/10, "3");
   }
 }
