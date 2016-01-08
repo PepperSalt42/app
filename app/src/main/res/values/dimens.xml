@@ -5,4 +5,6 @@
 
     <dimen name="message_author_image_size">40dp</dimen>
     <dimen name="message_time_width">50dp</dimen>
+
+    <dimen name="podium_number_size">30sp</dimen>
 </resources>

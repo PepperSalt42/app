@@ -19,4 +19,6 @@
 
     <!-- PepperSalt colors -->
     <color name="separator_colors">#DFDFDF</color>
+    <color name="beige">#E3D69F</color>
+    <color name="red">#E8052B</color>
 </resources>
