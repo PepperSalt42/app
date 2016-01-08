@@ -69,7 +69,7 @@ public class MessagesFragment extends PepperSaltFragment {
     author.setPoints(10);
     message.setAuthor(author);
     message.setTime("2016-15-08 18:54:42");
-    message.setMessage("Bonjour, ceci est un test de la team PepperSalt Android.");
+    message.setMessage("Bonjour, ceci est un test de la team PepperSalt Android. Ceci est un message allongé afin de prendre plus d'espace");
 
     data.add("Today's messages");
     data.add(message);

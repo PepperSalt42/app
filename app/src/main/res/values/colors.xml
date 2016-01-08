@@ -18,7 +18,10 @@
     <color name="default_background">#3d3d3d</color>
 
     <!-- PepperSalt colors -->
-    <color name="separator_colors">#DFDFDF</color>
+    <color name="separator_colors">#9E9E9E</color>
+    <color name="background_fragments_color">#E3D69F</color>
+    <color name="text_color">#616161</color>
+
     <color name="beige">#E3D69F</color>
     <color name="red">#E8052B</color>
 </resources>
