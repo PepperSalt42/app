@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/keyline_05"
+    android:background="@drawable/background_fragment_default"
+    android:orientation="horizontal"
+    android:padding="@dimen/keyline_1"
+    >
+
+    <TextView
+        android:id="@+id/rank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="@dimen/keyline_05"
+        android:layout_marginStart="@dimen/keyline_05"
+        android:textColor="@color/ranking_text_color"
+        android:textSize="@dimen/text_rank_size"
+        tools:text="1"
+        />
+
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="@dimen/author_avatar_size"
+        android:layout_height="@dimen/author_avatar_size"
+        android:paddingEnd="@dimen/keyline_05"
+        android:paddingStart="@dimen/keyline_05"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingEnd="@dimen/keyline_1"
+        android:paddingStart="@dimen/keyline_1"
+        >
+
+        <TextView
+            android:id="@+id/fullName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/ranking_text_color"
+            tools:text="Lucien Bramart"
+            />
+
+        <TextView
+            android:id="@+id/points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/ranking_text_color"
+            tools:text="11points"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

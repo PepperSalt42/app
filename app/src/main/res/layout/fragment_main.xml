@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/default_background"
+    android:weightSum="5"
+    >
+
+    <FrameLayout
+        android:id="@+id/messages_fragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/keyline_05"
+        android:layout_weight="2"
+        android:background="@drawable/background_fragment_default"
+        />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="3"
+        android:weightSum="5"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:orientation="horizontal"
+            android:weightSum="40"
+            >
+
+            <FrameLayout
+                android:id="@+id/announce_fragment"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/keyline_05"
+                android:background="@color/default_background"
+                android:layout_weight="21"
+                />
+
+            <FrameLayout
+                android:id="@+id/ranking_fragment"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/keyline_05"
+                android:background="@color/default_background"
+                android:layout_weight="19"
+                />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/question_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/keyline_05"
+            android:background="@drawable/background_fragment_question"
+            android:padding="@dimen/keyline_1"
+            android:layout_weight="1"
+            />
+
+    </LinearLayout>
+</LinearLayout>
