@@ -19,7 +19,6 @@
     <!-- PepperSalt colors -->
     <color name="default_background">#2C3E50</color>
     <color name="background_fragments_color">#DADDDE</color>
-    <color name="background_fragment_question_color">#DADDDE</color>
     <color name="separator_colors">#9E9E9E</color>
 
     <color name="beige">#E3D69F</color>

@@ -4,13 +4,17 @@
     <string name="ok">OK</string>
     <string name="version">Version: %1$s</string>
 
+    <string name="last_messages">LAST MESSAGES</string>
+
     <!-- Error messages -->
-    <string name="video_error_media_load_timeout">Media loading timed out</string>
-    <string name="video_error_server_inaccessible">Media server was not reachable</string>
-    <string name="video_error_unknown_error">Failed to load video</string>
     <string name="error_fragment_message">An error occurred</string>
     <string name="dismiss_error">Dismiss</string>
     <string name="oops">Oops</string>
 
-    <string name="last_messages">LAST MESSAGES</string>
+    <string name="no_messages">No messages to display.</string>
+    <string name="no_questions">There is no question currently set.</string>
+    <string name="no_leaderboard">No leaderboard yet.</string>
+    <string name="no_announce">No announce yet.</string>
+    <string name="error_view">Couldn\'t retrieve data from the server.</string>
+
 </resources>

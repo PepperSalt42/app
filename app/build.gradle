@@ -39,4 +39,7 @@ dependencies {
     // server requests and treatments
     compile "com.squareup.retrofit:retrofit:1.9.0"
     compile "com.google.code.gson:gson:2.4"
+
+    // autofit textviews
+    compile 'me.grantland:autofittextview:0.2.+'
 }

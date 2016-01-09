@@ -47,20 +47,25 @@ public class MessageAdapterDelegate extends AbsAdapterDelegate<List<Object>> {
     MessageViewHolder vh = (MessageViewHolder) holder;
     Message message = (Message) items.get(position);
     Person author = message.getAuthor();
-    String authorName = String.format("%s %s", author.getFirstName(), author.getLastName());
+    if (author != null) {
+      String authorName = String.format("%s %s", author.getFirstName(), author.getLastName());
+      vh.messageAuthorName.setText(authorName);
+      Picasso.with(context)
+          .load(author.getImageUrl())
+          .error(R.drawable.unknown)
+          .into(vh.authorImageView);
+    }
 
     if (position % 2 == 1) {
       ((View)vh.authorImageView.getParent())
           .setBackgroundColor(context.getResources().getColor(R.color.message_row_odd_color));
     }
-    vh.messageAuthorName.setText(authorName);
+    else {
+      ((View)vh.authorImageView.getParent())
+          .setBackgroundColor(context.getResources().getColor(R.color.background_fragments_color));
+    }
     vh.messageTime.setText(message.getTime());
     vh.message.setText(message.getMessage());
-
-    Picasso.with(context)
-        .load(author.getImageUrl())
-        .error(R.drawable.unknown)
-        .into(vh.authorImageView);
   }
 
   class MessageViewHolder extends RecyclerView.ViewHolder {

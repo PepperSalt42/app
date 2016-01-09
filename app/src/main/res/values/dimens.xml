@@ -16,6 +16,9 @@
     <dimen name="text_message_size">11sp</dimen>
     <dimen name="text_date_time_size">10sp</dimen>
     <dimen name="text_rank_size">30sp</dimen>
+    <dimen name="text_question_size">16sp</dimen>
 
     <dimen name="banner_rank_height">73dp</dimen>
+
+    <dimen name="quote_size">22dp</dimen>
 </resources>

@@ -3,16 +3,18 @@ package com.peppersalt.peppersalt.api.model;
 import com.google.gson.annotations.SerializedName;
 
 public class Message {
-  @SerializedName("id")
+  @SerializedName("ID")
   private int id;
 
-  @SerializedName("author")
   private Person author;
 
-  @SerializedName("message")
+  @SerializedName("UserID")
+  private int authorId;
+
+  @SerializedName("Message")
   private String message;
 
-  @SerializedName("time")
+  @SerializedName("CreatedAt")
   private String time;
 
   public Person getAuthor() {
@@ -37,5 +39,13 @@ public class Message {
 
   public void setTime(String time) {
     this.time = time;
+  }
+
+  public int getAuthorId() {
+    return authorId;
+  }
+
+  public void setAuthorId(int authorId) {
+    this.authorId = authorId;
   }
 }
