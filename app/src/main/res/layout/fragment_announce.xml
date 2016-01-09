@@ -7,9 +7,38 @@
     >
 
     <ImageView
-        android:id="@+id/announceImage1"
+        android:id="@+id/announceImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
+        />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:foregroundGravity="center"
+        android:visibility="visible"
+        />
+
+    <TextView
+        android:id="@+id/empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/no_announce"
+        android:textColor="@color/background_fragments_color"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/error_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/error_view"
+        android:textColor="@color/background_fragments_color"
+        android:visibility="gone"
         />
 
 </LinearLayout>
