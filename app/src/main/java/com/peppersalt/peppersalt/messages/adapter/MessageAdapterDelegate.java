@@ -49,6 +49,10 @@ public class MessageAdapterDelegate extends AbsAdapterDelegate<List<Object>> {
     Person author = message.getAuthor();
     String authorName = String.format("%s %s", author.getFirstName(), author.getLastName());
 
+    if (position % 2 == 1) {
+      ((View)vh.authorImageView.getParent())
+          .setBackgroundColor(context.getResources().getColor(R.color.message_row_odd_color));
+    }
     vh.messageAuthorName.setText(authorName);
     vh.messageTime.setText(message.getTime());
     vh.message.setText(message.getMessage());

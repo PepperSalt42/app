@@ -6,6 +6,15 @@
     android:orientation="vertical"
     >
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/keyline_1"
+        android:text="@string/last_messages"
+        android:textSize="@dimen/text_message_title"
+        android:textStyle="bold"
+        />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/messagesRecyclerView"
         android:layout_width="match_parent"

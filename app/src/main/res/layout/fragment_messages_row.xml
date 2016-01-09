@@ -10,8 +10,9 @@
 
     <ImageView
         android:id="@+id/messageAuthorImage"
-        android:layout_width="@dimen/message_author_image_size"
-        android:layout_height="@dimen/message_author_image_size"
+        android:layout_width="@dimen/author_avatar_size"
+        android:layout_height="@dimen/author_avatar_size"
+        android:paddingTop="@dimen/keyline_1"
         />
 
     <LinearLayout
@@ -33,6 +34,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@color/author_name"
                 tools:text="Author"
                 />
 
@@ -40,6 +42,8 @@
                 android:id="@+id/messageTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/text_date_time_size"
+                android:textStyle="italic"
                 tools:text="datetime"
                 />
 
@@ -49,6 +53,7 @@
             android:id="@+id/message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/text_message_size"
             />
 
     </LinearLayout>

@@ -15,13 +15,25 @@
     <color name="orange_transparent">#AAFADCA7</color>
     <color name="orange">#FADCA7</color>
     <color name="yellow">#EEFF41</color>
-    <color name="default_background">#3d3d3d</color>
 
     <!-- PepperSalt colors -->
+    <color name="default_background">#2C3E50</color>
+    <color name="background_fragments_color">#DADDDE</color>
+    <color name="background_fragment_question_color">#DADDDE</color>
     <color name="separator_colors">#9E9E9E</color>
-    <color name="background_fragments_color">#E3D69F</color>
-    <color name="text_color">#616161</color>
 
     <color name="beige">#E3D69F</color>
     <color name="red">#E8052B</color>
+
+    <color name="background_ranking_cell_default">#5F7C8F</color>
+    <color name="background_ranking_cell_gold">#C98910</color>
+    <color name="background_ranking_cell_silver">#A8A8A8</color>
+    <color name="background_ranking_cell_bronze">#965A38</color>
+
+    <color name="author_name">#E74C3C</color>
+    <color name="text_color">#2C3E50</color>
+    <color name="ranking_text_color">#E3E3E3</color>
+
+    <color name="message_row_odd_color">#CCCCCC</color>
+
 </resources>

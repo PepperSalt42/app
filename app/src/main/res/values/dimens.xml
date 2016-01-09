@@ -2,13 +2,20 @@
 <resources>
     <dimen name="separator_width">2dp</dimen>
 
-    <dimen name="message_author_image_size">48dp</dimen>
+    <dimen name="author_avatar_size">40dp</dimen>
     <dimen name="message_time_width">50dp</dimen>
 
     <dimen name="podium_number_size">30sp</dimen>
     <dimen name="keyline_05">3dp</dimen>
     <dimen name="keyline_1">6dp</dimen>
     <dimen name="keyline_2">12dp</dimen>
-    
+
     <dimen name="background_corner_radius">10dp</dimen>
+    <dimen name="announce_corner_radius">20dp</dimen>
+    <dimen name="text_message_title">18sp</dimen>
+    <dimen name="text_message_size">11sp</dimen>
+    <dimen name="text_date_time_size">10sp</dimen>
+    <dimen name="text_rank_size">30sp</dimen>
+
+    <dimen name="banner_rank_height">73dp</dimen>
 </resources>

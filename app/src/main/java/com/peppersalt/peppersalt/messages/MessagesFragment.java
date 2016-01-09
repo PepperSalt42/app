@@ -65,16 +65,15 @@ public class MessagesFragment extends PepperSaltFragment {
     author.setFirstName("Lucien");
     author.setLastName("Bramart");
     author.setUsername("bramar_l");
-    author.setImageUrl("https://avatars.slack-edge.com/2016-01-06/17850350192_00b38f75688300858435_48.jpg");
+    author.setImageUrl("https://avatars.slack-edge.com/2016-01-06/17850350192_00b38f75688300858435_192.jpg");
     author.setPoints(10);
     message.setAuthor(author);
     message.setTime("2016-15-08 18:54:42");
     message.setMessage("Bonjour, ceci est un test de la team PepperSalt Android. Ceci est un message allongé afin de prendre plus d'espace");
 
-    data.add("Today's messages");
-    data.add(message);
-    data.add(message);
-    data.add(message);
+    for (int i = 0; i < 7; ++i) {
+      data.add(message);
+    }
     adapter.setData(data);
   }
 }
