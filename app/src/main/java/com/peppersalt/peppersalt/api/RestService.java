@@ -1,5 +1,25 @@
 package com.peppersalt.peppersalt.api;
 
-public class RestService {
+import com.peppersalt.peppersalt.api.model.Message;
+import com.peppersalt.peppersalt.api.model.Person;
+import com.peppersalt.peppersalt.api.model.Question;
 
+import java.util.List;
+
+import retrofit.Callback;
+import retrofit.http.GET;
+import retrofit.http.Path;
+
+public interface RestService {
+  @GET("/users/top")
+  public void getUsersTop(Callback<List<Person>> callback);
+
+  @GET("/users/{user_id}")
+  public void getUser(@Path("user_id") int userId, Callback<Person> callback);
+
+  @GET("/messages")
+  public void getMessages(Callback<List<Message>> callback);
+
+  @GET("/questions/current")
+  public void getQuestion(Callback<Question> callback);
 }

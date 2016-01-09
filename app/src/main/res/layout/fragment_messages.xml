@@ -6,19 +6,55 @@
     android:orientation="vertical"
     >
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/content_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/keyline_1"
-        android:text="@string/last_messages"
-        android:textSize="@dimen/text_message_title"
-        android:textStyle="bold"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/keyline_1"
+            android:text="@string/last_messages"
+            android:textSize="@dimen/text_message_title"
+            android:textStyle="bold"
+            />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/messagesRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:foregroundGravity="center"
+        android:visibility="visible"
         />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/messagesRecyclerView"
+    <TextView
+        android:id="@+id/empty_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/no_messages"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/error_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/error_view"
+        android:visibility="gone"
         />
 
 </LinearLayout>

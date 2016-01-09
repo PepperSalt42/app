@@ -9,6 +9,9 @@ public class Message {
   @SerializedName("author")
   private Person author;
 
+  @SerializedName("author_id")
+  private int authorId;
+
   @SerializedName("message")
   private String message;
 
@@ -37,5 +40,13 @@ public class Message {
 
   public void setTime(String time) {
     this.time = time;
+  }
+
+  public int getAuthorId() {
+    return authorId;
+  }
+
+  public void setAuthorId(int authorId) {
+    this.authorId = authorId;
   }
 }
