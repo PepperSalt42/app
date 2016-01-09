@@ -8,20 +8,8 @@
 
     <ImageView
         android:id="@+id/announceImage1"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginEnd="@dimen/keyline_2"
-        android:layout_marginStart="@dimen/keyline_2"
-        android:layout_weight="1"
-        />
-
-    <ImageView
-        android:id="@+id/announceImage2"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="@dimen/keyline_2"
-        android:layout_marginStart="@dimen/keyline_2"
-        android:layout_weight="1"
         />
 
 </LinearLayout>
