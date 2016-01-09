@@ -10,4 +10,20 @@ public class Question {
 
   @SerializedName("answers")
   private List<String> answers;
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public List<String> getAnswers() {
+    return answers;
+  }
+
+  public void setAnswers(List<String> answers) {
+    this.answers = answers;
+  }
 }

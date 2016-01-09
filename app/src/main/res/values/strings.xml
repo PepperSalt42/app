@@ -12,6 +12,6 @@
     <string name="oops">Oops</string>
 
     <string name="no_messages">No messages to display</string>
-    <string name="error_view">Couldn\'t retrieve data</string>
+    <string name="error_view">Couldn\'t retrieve data from server</string>
 
 </resources>
