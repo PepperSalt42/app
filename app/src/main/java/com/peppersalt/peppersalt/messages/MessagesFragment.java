@@ -37,6 +37,8 @@ public class MessagesFragment extends PepperSaltFragment {
   @Bind(R.id.empty_view) TextView emptyView;
   @Bind(R.id.error_view) TextView errorView;
 
+  private static int REFRESH_TIME = 5000;
+
   private Context context;
   private MessagesAdapter adapter;
   private List<Object> data;
@@ -60,14 +62,21 @@ public class MessagesFragment extends PepperSaltFragment {
   }
 
   @Override
-  public void onViewCreated(View view, Bundle savedInstanceState) {
+  public void onViewCreated(final View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     ButterKnife.bind(this, view);
     data = new ArrayList<>();
     adapter = new MessagesAdapter(view, data);
     messagesRecyclerView.setAdapter(adapter);
     messagesRecyclerView.setLayoutManager(new LinearLayoutManager(context));
-    loadData();
+    Runnable runnable = new Runnable() {
+      @Override
+      public void run() {
+        loadData();
+        view.postDelayed(this, REFRESH_TIME);
+      }
+    };
+    view.post(runnable);
   }
 
   private void loadData() {
