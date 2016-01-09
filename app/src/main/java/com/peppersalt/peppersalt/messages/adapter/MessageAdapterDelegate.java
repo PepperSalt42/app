@@ -56,8 +56,6 @@ public class MessageAdapterDelegate extends AbsAdapterDelegate<List<Object>> {
     Picasso.with(context)
         .load(author.getImageUrl())
         .error(R.drawable.unknown)
-        .resize(R.dimen.message_author_image_size, R.dimen.message_author_image_size)
-        .centerCrop()
         .into(vh.authorImageView);
   }
 
