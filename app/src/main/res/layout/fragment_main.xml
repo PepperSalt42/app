@@ -26,7 +26,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_weight="1"
-        android:weightSum="5"
+        android:weightSum="6"
         >
         <FrameLayout
             android:id="@+id/announce_fragment"
@@ -34,7 +34,7 @@
             android:layout_height="0dp"
             android:background="@color/background_fragments_color"
             android:padding="@dimen/keyline_05"
-            android:layout_weight="2"
+            android:layout_weight="3"
             />
 
         <View
