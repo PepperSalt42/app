@@ -58,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="@dimen/keyline_05"
-            android:background="@drawable/background_fragment_question"
+            android:background="@drawable/background_fragment_default"
             android:padding="@dimen/keyline_1"
             android:layout_weight="1"
             />

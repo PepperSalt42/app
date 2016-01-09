@@ -7,16 +7,53 @@
     android:weightSum="2"
     >
 
-    <ImageView
+    <LinearLayout
+        android:id="@+id/content_view"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/banner_rank_height"
-        android:src="@drawable/leaderboard"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/banner_rank_height"
+            android:src="@drawable/leaderboard"
+            />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rankingRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:foregroundGravity="center"
         />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rankingRecyclerView"
+    <TextView
+        android:id="@+id/empty_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/no_messages"
+        android:textColor="@color/background_fragments_color"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/error_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/error_view"
+        android:textColor="@color/background_fragments_color"
+        android:visibility="gone"
         />
 
 </LinearLayout>

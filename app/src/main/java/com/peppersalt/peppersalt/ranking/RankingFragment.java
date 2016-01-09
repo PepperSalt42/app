@@ -8,8 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.peppersalt.peppersalt.R;
+import com.peppersalt.peppersalt.api.RestClient;
+import com.peppersalt.peppersalt.api.RestService;
 import com.peppersalt.peppersalt.api.model.Person;
 import com.peppersalt.peppersalt.base.PepperSaltFragment;
 
@@ -18,10 +23,20 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class RankingFragment extends PepperSaltFragment {
 
   @Bind(R.id.rankingRecyclerView) RecyclerView recyclerView;
+
+  @Bind(R.id.content_view) LinearLayout contentView;
+  @Bind(R.id.progress_bar) ProgressBar progressBar;
+  @Bind(R.id.empty_view) TextView emptyView;
+  @Bind(R.id.error_view) TextView errorView;
+
+  private static int REFRESH_DELAY = 60000;
 
   private RankingAdapter adapter;
 
@@ -32,12 +47,40 @@ public class RankingFragment extends PepperSaltFragment {
   }
 
   @Override
-  public void onViewCreated(View view, Bundle savedInstanceState) {
+  public void onViewCreated(final View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     ButterKnife.bind(this, view);
     adapter = new RankingAdapter();
-    adapter.setData(setFakeData());
     setRecyclerView(view.getContext());
+    Runnable runnable = new Runnable() {
+      @Override
+      public void run() {
+        loadData();
+        view.postDelayed(this, REFRESH_DELAY);
+      }
+    };
+    view.post(runnable);
+  }
+
+  private void loadData() {
+    RestService service = RestClient.getInstance().getRestService();
+
+    service.getUsersTop(new Callback<List<Person>>() {
+      @Override
+      public void success(List<Person> persons, Response response) {
+        if (persons == null || persons.size() == 0) {
+          showEmpty();
+          return ;
+        }
+        adapter.setData(persons);
+        showContent();
+      }
+
+      @Override
+      public void failure(RetrofitError error) {
+        showError();
+      }
+    });
   }
 
   private void setRecyclerView(Context context) {
@@ -46,9 +89,25 @@ public class RankingFragment extends PepperSaltFragment {
     recyclerView.setAdapter(adapter);
   }
 
-  @Override
-  public void onResume() {
-    super.onResume();
+  private void showContent() {
+    contentView.setVisibility(View.VISIBLE);
+    progressBar.setVisibility(View.GONE);
+    errorView.setVisibility(View.GONE);
+    emptyView.setVisibility(View.GONE);
+  }
+
+  private void showEmpty() {
+    contentView.setVisibility(View.GONE);
+    progressBar.setVisibility(View.GONE);
+    errorView.setVisibility(View.GONE);
+    emptyView.setVisibility(View.VISIBLE);
+  }
+
+  private void showError() {
+    contentView.setVisibility(View.GONE);
+    progressBar.setVisibility(View.GONE);
+    emptyView.setVisibility(View.GONE);
+    errorView.setVisibility(View.VISIBLE);
   }
 
   private List<Person> setFakeData() {
