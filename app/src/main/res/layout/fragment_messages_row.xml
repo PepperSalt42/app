@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="@dimen/keyline_1"
+    android:padding="@dimen/keyline_2"
     >
 
     <ImageView
@@ -18,8 +18,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingEnd="@dimen/keyline_1"
-        android:paddingStart="@dimen/keyline_1"
+        android:paddingEnd="@dimen/keyline_2"
+        android:paddingStart="@dimen/keyline_2"
         >
 
         <LinearLayout
