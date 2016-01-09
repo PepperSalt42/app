@@ -13,12 +13,14 @@ import com.peppersalt.peppersalt.R;
 import com.peppersalt.peppersalt.api.RestClient;
 import com.peppersalt.peppersalt.api.RestService;
 import com.peppersalt.peppersalt.api.model.Question;
+import com.peppersalt.peppersalt.api.model.QuestionWrapper;
 import com.peppersalt.peppersalt.base.PepperSaltFragment;
 
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import me.grantland.widget.AutofitTextView;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -30,13 +32,13 @@ public class QuestionFragment extends PepperSaltFragment {
   @Bind(R.id.empty_view) TextView emptyView;
   @Bind(R.id.error_view) TextView errorView;
 
-  @Bind(R.id.question) TextView questionView;
+  @Bind(R.id.question) AutofitTextView questionView;
   @Bind(R.id.answer1) TextView answer1View;
   @Bind(R.id.answer2) TextView answer2View;
   @Bind(R.id.answer3) TextView answer3View;
   @Bind(R.id.answer4) TextView answer4View;
 
-  private static int REFRESH_DELAY = 60000;
+  private static int REFRESH_DELAY = 10000;
 
   @Nullable
   @Override
@@ -62,26 +64,28 @@ public class QuestionFragment extends PepperSaltFragment {
   private void loadQuestion() {
     RestService service = RestClient.getInstance().getRestService();
 
-    service.getQuestion(new Callback<Question>() {
+    service.getQuestion(new Callback<QuestionWrapper>() {
       @Override
-      public void success(Question question, Response response) {
+      public void success(QuestionWrapper wrapper, Response response) {
+        Question question = wrapper.getQuestion();
+        List<String> answers = wrapper.getAnswers();
+
         if (question == null || question.getDescription() == null ||
-            question.getAnswers() == null || question.getAnswers().size() < 2) {
+            answers == null || answers.size() < 2) {
           showEmpty();
           return;
         }
-        List<String> answers = question.getAnswers();
         questionView.setText(question.getDescription());
 
-        answer1View.setText(question.getAnswers().get(0));
-        answer2View.setText(question.getAnswers().get(1));
+        answer1View.setText(String.format("1. %s", answers.get(0)));
+        answer2View.setText(String.format("2. %s", answers.get(1)));
         switch (answers.size()) {
           case 3:
-            answer3View.setText(question.getAnswers().get(2));
+            answer3View.setText(String.format("3. %s", answers.get(2)));
             break;
           case 4:
-            answer3View.setText(question.getAnswers().get(2));
-            answer4View.setText(question.getAnswers().get(3));
+            answer3View.setText(String.format("3. %s", answers.get(2)));
+            answer4View.setText(String.format("4. %s", answers.get(3)));
             break;
         }
         showContent();
@@ -89,7 +93,12 @@ public class QuestionFragment extends PepperSaltFragment {
 
       @Override
       public void failure(RetrofitError error) {
-        showError();
+        if (error.getResponse() != null && error.getResponse().getStatus() == 404) {
+          showEmpty();
+        }
+        else {
+          showError();
+        }
       }
     });
   }
