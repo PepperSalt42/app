@@ -7,7 +7,7 @@ import retrofit.RestAdapter;
 import retrofit.converter.GsonConverter;
 
 public class RestClient {
-  private static final String BASE_URL = "https://ludovicpost.me";
+  private static final String BASE_URL = "http://ludovicpost.me:3001";
   private RestService mRestService;
   private static RestClient instance;
 

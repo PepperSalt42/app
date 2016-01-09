@@ -1,8 +1,9 @@
 package com.peppersalt.peppersalt.api;
 
+import com.peppersalt.peppersalt.api.model.Announce;
 import com.peppersalt.peppersalt.api.model.Message;
 import com.peppersalt.peppersalt.api.model.Person;
-import com.peppersalt.peppersalt.api.model.Question;
+import com.peppersalt.peppersalt.api.model.QuestionWrapper;
 
 import java.util.List;
 
@@ -17,9 +18,12 @@ public interface RestService {
   @GET("/users/{user_id}")
   public void getUser(@Path("user_id") int userId, Callback<Person> callback);
 
-  @GET("/messages")
+  @GET("/messages?count=8")
   public void getMessages(Callback<List<Message>> callback);
 
   @GET("/questions/current")
-  public void getQuestion(Callback<Question> callback);
+  public void getQuestion(Callback<QuestionWrapper> callback);
+
+  @GET("/images/latest")
+  public void getLastImage(Callback<Announce> callback);
 }
