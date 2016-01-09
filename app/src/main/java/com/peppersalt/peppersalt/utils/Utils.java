@@ -12,7 +12,7 @@
  * the License.
  */
 
-package com.peppersalt.peppersalt;
+package com.peppersalt.peppersalt.utils;
 
 import android.content.Context;
 import android.graphics.Point;

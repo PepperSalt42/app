@@ -3,7 +3,8 @@ package com.peppersalt.peppersalt.ranking;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,6 @@ import android.view.ViewGroup;
 import com.peppersalt.peppersalt.R;
 import com.peppersalt.peppersalt.api.model.Person;
 import com.peppersalt.peppersalt.base.PepperSaltFragment;
-import com.peppersalt.peppersalt.customviews.podiumView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,9 @@ import butterknife.ButterKnife;
 
 public class RankingFragment extends PepperSaltFragment {
 
-  @Bind(R.id.podiumView) podiumView podiumV;
+  @Bind(R.id.rankingRecyclerView) RecyclerView recyclerView;
+
+  private RankingAdapter adapter;
 
   @Nullable
   @Override
@@ -33,12 +35,15 @@ public class RankingFragment extends PepperSaltFragment {
   public void onViewCreated(View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     ButterKnife.bind(this, view);
-    view.postDelayed(new Runnable() {
-      @Override
-      public void run() {
-        setFakeData();
-      }
-    }, 1000);
+    adapter = new RankingAdapter();
+    adapter.setData(setFakeData());
+    setRecyclerView(view.getContext());
+  }
+
+  private void setRecyclerView(Context context) {
+    GridLayoutManager layoutManager = new GridLayoutManager(context, 1);
+    recyclerView.setLayoutManager(layoutManager);
+    recyclerView.setAdapter(adapter);
   }
 
   @Override
@@ -46,7 +51,7 @@ public class RankingFragment extends PepperSaltFragment {
     super.onResume();
   }
 
-  private void setFakeData() {
+  private List<Person> setFakeData() {
     List<Person> people = new ArrayList<>();
     Person person = new Person();
 
@@ -54,9 +59,10 @@ public class RankingFragment extends PepperSaltFragment {
     person.setLastName("Flantier");
     person.setPoints(10);
     person.setUsername("flanti_n");
-    people.add(person);
-    people.add(person);
-    people.add(person);
-    podiumV.setData(people);
+    person.setImageUrl("https://avatars.slack-edge.com/2016-01-06/17850350192_00b38f75688300858435_192.jpg");
+    for (int i = 0; i < 6; ++i) {
+      people.add(person);
+    }
+    return people;
   }
 }
