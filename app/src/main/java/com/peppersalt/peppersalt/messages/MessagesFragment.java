@@ -81,14 +81,16 @@ public class MessagesFragment extends PepperSaltFragment {
 
   private void loadData() {
     final RestService service = RestClient.getInstance().getRestService();
+    int count = 8;
 
     service.getMessages(new Callback<List<Message>>() {
       @Override
-      public void success(List<Message> messages, Response response) {
+      public void success(final List<Message> messages, Response response) {
         final List<Person> people = new ArrayList<>();
 
         if (messages.size() == 0) {
           setEmptyView();
+          return ;
         }
         for (final Message message : messages) {
           int messageAuthorId = message.getAuthorId();
@@ -105,6 +107,11 @@ public class MessagesFragment extends PepperSaltFragment {
               @Override
               public void success(Person person, Response response) {
                 people.add(person);
+                setAuthorToMessage(messages, people);
+                List<Object> data = new ArrayList<>();
+                data.addAll(messages);
+                adapter.setData(data);
+                showContent();
               }
 
               @Override
@@ -114,11 +121,6 @@ public class MessagesFragment extends PepperSaltFragment {
             });
           }
         }
-        setAuthorToMessage(messages, people);
-        List<Object> data = new ArrayList<>();
-        data.addAll(messages);
-        adapter.setData(data);
-        showContent();
       }
 
       @Override

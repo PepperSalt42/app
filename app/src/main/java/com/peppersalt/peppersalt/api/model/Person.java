@@ -3,22 +3,22 @@ package com.peppersalt.peppersalt.api.model;
 import com.google.gson.annotations.SerializedName;
 
 public class Person {
-  @SerializedName("id")
+  @SerializedName("ID")
   private int id;
 
-  @SerializedName("first_name")
+  @SerializedName("FirstName")
   private String firstName;
 
-  @SerializedName("last_name")
+  @SerializedName("LastName")
   private String lastName;
 
-  @SerializedName("username")
+  @SerializedName("SlackID")
   private String username;
 
-  @SerializedName("points")
+  @SerializedName("Points")
   private int points;
 
-  @SerializedName("image")
+  @SerializedName("ImageURL")
   private String imageUrl;
 
 
