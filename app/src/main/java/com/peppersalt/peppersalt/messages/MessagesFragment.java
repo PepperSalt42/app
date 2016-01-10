@@ -8,16 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.peppersalt.peppersalt.R;
 import com.peppersalt.peppersalt.api.RestClient;
 import com.peppersalt.peppersalt.api.RestService;
 import com.peppersalt.peppersalt.api.model.Message;
 import com.peppersalt.peppersalt.api.model.Person;
-import com.peppersalt.peppersalt.base.PepperSaltFragment;
+import com.peppersalt.peppersalt.base.PepperSaltLceFragment;
 import com.peppersalt.peppersalt.messages.adapter.MessagesAdapter;
 
 import java.util.ArrayList;
@@ -29,13 +26,9 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class MessagesFragment extends PepperSaltFragment {
+public class MessagesFragment extends PepperSaltLceFragment {
 
   @Bind(R.id.messagesRecyclerView) RecyclerView messagesRecyclerView;
-  @Bind(R.id.content_view) LinearLayout contentView;
-  @Bind(R.id.progress_bar) ProgressBar progressBar;
-  @Bind(R.id.empty_view) TextView emptyView;
-  @Bind(R.id.error_view) TextView errorView;
 
   private static int REFRESH_TIME = 5000;
 
@@ -89,7 +82,7 @@ public class MessagesFragment extends PepperSaltFragment {
         final List<Person> people = new ArrayList<>();
 
         if (messages.size() == 0) {
-          setEmptyView();
+          showEmpty();
           return ;
         }
         for (final Message message : messages) {
@@ -116,7 +109,7 @@ public class MessagesFragment extends PepperSaltFragment {
 
               @Override
               public void failure(RetrofitError error) {
-                setErrorView();
+                showError();
               }
             });
           }
@@ -126,7 +119,7 @@ public class MessagesFragment extends PepperSaltFragment {
       @Override
       public void failure(RetrofitError error) {
         adapter.setData(new ArrayList<Object>());
-        setErrorView();
+        showError();
       }
     });
   }
@@ -140,27 +133,6 @@ public class MessagesFragment extends PepperSaltFragment {
         }
       }
     }
-  }
-
-  private void showContent() {
-    contentView.setVisibility(View.VISIBLE);
-    progressBar.setVisibility(View.GONE);
-    errorView.setVisibility(View.GONE);
-    emptyView.setVisibility(View.GONE);
-  }
-
-  private void setEmptyView() {
-    contentView.setVisibility(View.GONE);
-    progressBar.setVisibility(View.GONE);
-    errorView.setVisibility(View.GONE);
-    emptyView.setVisibility(View.VISIBLE);
-  }
-
-  private void setErrorView() {
-    contentView.setVisibility(View.GONE);
-    progressBar.setVisibility(View.GONE);
-    emptyView.setVisibility(View.GONE);
-    errorView.setVisibility(View.VISIBLE);
   }
 
   private void addFakeData() {

@@ -99,8 +99,8 @@
     <orderEntry type="library" exported="" name="picasso-2.5.2" level="project" />
     <orderEntry type="library" exported="" name="adapterdelegates-1.0.2" level="project" />
     <orderEntry type="library" exported="" name="glide-3.4.0" level="project" />
-    <orderEntry type="library" exported="" name="support-annotations-23.1.1" level="project" />
     <orderEntry type="library" exported="" name="retrofit-1.9.0" level="project" />
+    <orderEntry type="library" exported="" name="support-annotations-23.1.1" level="project" />
     <orderEntry type="library" exported="" name="leanback-v17-23.1.1" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-23.1.1" level="project" />
     <orderEntry type="library" exported="" name="autofittextview-0.2.1" level="project" />
