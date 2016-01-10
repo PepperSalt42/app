@@ -6,12 +6,19 @@
     android:orientation="horizontal"
     >
 
-    <ImageView
-        android:id="@+id/announceImage"
+    <LinearLayout
+        android:id="@+id/content_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         android:visibility="gone"
-        />
+        >
+        <ImageView
+            android:id="@+id/announceImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/progress_bar"

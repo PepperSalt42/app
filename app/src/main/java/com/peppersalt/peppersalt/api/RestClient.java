@@ -12,7 +12,9 @@ public class RestClient {
   private static RestClient instance;
 
   private RestClient() {
-    Gson gson = new GsonBuilder().create();
+    Gson gson = new GsonBuilder()
+        .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+        .create();
     RestAdapter restAdapter = new RestAdapter
         .Builder()
         .setLogLevel(RestAdapter.LogLevel.FULL)

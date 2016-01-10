@@ -10,6 +10,7 @@ import java.util.List;
 import retrofit.Callback;
 import retrofit.http.GET;
 import retrofit.http.Path;
+import retrofit.http.Query;
 
 public interface RestService {
   @GET("/users/top")
@@ -18,8 +19,8 @@ public interface RestService {
   @GET("/users/{user_id}")
   public void getUser(@Path("user_id") int userId, Callback<Person> callback);
 
-  @GET("/messages?count=8")
-  public void getMessages(Callback<List<Message>> callback);
+  @GET("/messages")
+  public void getMessages(@Query("count") int count, Callback<List<Message>> callback);
 
   @GET("/questions/current")
   public void getQuestion(Callback<QuestionWrapper> callback);

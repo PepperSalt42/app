@@ -8,17 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.peppersalt.peppersalt.R;
 import com.peppersalt.peppersalt.api.RestClient;
 import com.peppersalt.peppersalt.api.RestService;
 import com.peppersalt.peppersalt.api.model.Person;
-import com.peppersalt.peppersalt.base.PepperSaltFragment;
+import com.peppersalt.peppersalt.base.PepperSaltLceFragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -27,14 +23,9 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class RankingFragment extends PepperSaltFragment {
+public class RankingFragment extends PepperSaltLceFragment {
 
   @Bind(R.id.rankingRecyclerView) RecyclerView recyclerView;
-
-  @Bind(R.id.content_view) LinearLayout contentView;
-  @Bind(R.id.progress_bar) ProgressBar progressBar;
-  @Bind(R.id.empty_view) TextView emptyView;
-  @Bind(R.id.error_view) TextView errorView;
 
   private static int REFRESH_DELAY = 60000;
 
@@ -87,41 +78,5 @@ public class RankingFragment extends PepperSaltFragment {
     GridLayoutManager layoutManager = new GridLayoutManager(context, 1);
     recyclerView.setLayoutManager(layoutManager);
     recyclerView.setAdapter(adapter);
-  }
-
-  private void showContent() {
-    contentView.setVisibility(View.VISIBLE);
-    progressBar.setVisibility(View.GONE);
-    errorView.setVisibility(View.GONE);
-    emptyView.setVisibility(View.GONE);
-  }
-
-  private void showEmpty() {
-    contentView.setVisibility(View.GONE);
-    progressBar.setVisibility(View.GONE);
-    errorView.setVisibility(View.GONE);
-    emptyView.setVisibility(View.VISIBLE);
-  }
-
-  private void showError() {
-    contentView.setVisibility(View.GONE);
-    progressBar.setVisibility(View.GONE);
-    emptyView.setVisibility(View.GONE);
-    errorView.setVisibility(View.VISIBLE);
-  }
-
-  private List<Person> setFakeData() {
-    List<Person> people = new ArrayList<>();
-    Person person = new Person();
-
-    person.setFirstName("Noel");
-    person.setLastName("Flantier");
-    person.setPoints(10);
-    person.setUsername("flanti_n");
-    person.setImageUrl("https://avatars.slack-edge.com/2016-01-06/17850350192_00b38f75688300858435_192.jpg");
-    for (int i = 0; i < 6; ++i) {
-      people.add(person);
-    }
-    return people;
   }
 }

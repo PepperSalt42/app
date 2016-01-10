@@ -8,16 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.peppersalt.peppersalt.R;
 import com.peppersalt.peppersalt.api.RestClient;
 import com.peppersalt.peppersalt.api.RestService;
 import com.peppersalt.peppersalt.api.model.Message;
 import com.peppersalt.peppersalt.api.model.Person;
-import com.peppersalt.peppersalt.base.PepperSaltFragment;
+import com.peppersalt.peppersalt.base.PepperSaltLceFragment;
 import com.peppersalt.peppersalt.messages.adapter.MessagesAdapter;
 
 import java.util.ArrayList;
@@ -29,15 +26,11 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class MessagesFragment extends PepperSaltFragment {
+public class MessagesFragment extends PepperSaltLceFragment {
 
   @Bind(R.id.messagesRecyclerView) RecyclerView messagesRecyclerView;
-  @Bind(R.id.content_view) LinearLayout contentView;
-  @Bind(R.id.progress_bar) ProgressBar progressBar;
-  @Bind(R.id.empty_view) TextView emptyView;
-  @Bind(R.id.error_view) TextView errorView;
 
-  private static int REFRESH_TIME = 5000;
+  private static int REFRESH_TIME = 4000;
 
   private Context context;
   private MessagesAdapter adapter;
@@ -81,57 +74,89 @@ public class MessagesFragment extends PepperSaltFragment {
 
   private void loadData() {
     final RestService service = RestClient.getInstance().getRestService();
-    int count = 8;
+    final int count = 7;
 
-    service.getMessages(new Callback<List<Message>>() {
+    service.getMessages(count, new Callback<List<Message>>() {
       @Override
       public void success(final List<Message> messages, Response response) {
-        final List<Person> people = new ArrayList<>();
+        final List<Integer> authorsIds;
+        final List<Person> authors = new ArrayList<>();
 
-        if (messages.size() == 0) {
-          setEmptyView();
+        if (messages == null || messages.size() == 0) {
+          showEmpty();
           return ;
         }
-        for (final Message message : messages) {
-          int messageAuthorId = message.getAuthorId();
-          boolean isAlreadyGetted = false;
-
-          for (Person person : people) {
-            if (person.getId() == messageAuthorId) {
-              isAlreadyGetted = true;
-              break ;
-            }
-          }
-          if (!isAlreadyGetted) {
-            service.getUser(message.getAuthorId(), new Callback<Person>() {
-              @Override
-              public void success(Person person, Response response) {
-                people.add(person);
-                setAuthorToMessage(messages, people);
-                List<Object> data = new ArrayList<>();
-                data.addAll(messages);
-                adapter.setData(data);
-                showContent();
-              }
-
-              @Override
-              public void failure(RetrofitError error) {
-                setErrorView();
-              }
-            });
-          }
+        authorsIds = getAuthors(messages);
+        for (Integer id : authorsIds) {
+          downloadUser(id, service, authors, authorsIds, messages);
         }
       }
 
       @Override
       public void failure(RetrofitError error) {
-        adapter.setData(new ArrayList<Object>());
-        setErrorView();
+        adapter.setData(new ArrayList<>());
+        showError();
       }
     });
   }
 
-  private void setAuthorToMessage(List<Message> messages, List<Person> people) {
+  private void downloadUser(int id, RestService service, final List<Person> authors,
+                            final List<Integer> authorsIds, final List<Message> messages) {
+    service.getUser(id, new Callback<Person>() {
+      @Override
+      public void success(Person person, Response response) {
+        boolean areAllAuthorsDownloaded = true;
+
+        authors.add(person);
+        for (Integer authorId : authorsIds) {
+          boolean isAuthorDownloaded = false;
+
+          for (Person author : authors) {
+            if (authorId.equals(author.getId())) {
+              isAuthorDownloaded = true;
+              break ;
+            }
+          }
+          if (!isAuthorDownloaded) {
+            areAllAuthorsDownloaded = false;
+            break ;
+          }
+        }
+
+        if (areAllAuthorsDownloaded) {
+          setAuthorsToMessages(messages, authors);
+          setData(messages);
+        }
+      }
+
+      @Override
+      public void failure(RetrofitError error) {
+        showError();
+      }
+    });
+  }
+
+  private void setData(List<Message> messages) {
+    List<Object> data = new ArrayList<>();
+    data.addAll(messages);
+    if (!adapter.getData().equals(data)) {
+      adapter.setData(data);
+      showContent();
+    }
+  }
+
+  private List<Integer> getAuthors(List<Message> messages) {
+    List<Integer> authorsIds = new ArrayList<>();
+
+    for (Message message : messages) {
+      if (!authorsIds.contains(message.getAuthorId())) {
+        authorsIds.add(message.getAuthorId());
+      }
+    }
+    return authorsIds;
+  }
+
+  private void setAuthorsToMessages(List<Message> messages, List<Person> people) {
     for (Message message : messages) {
       for (Person person : people) {
         if (message.getAuthorId() == person.getId()) {
@@ -140,45 +165,5 @@ public class MessagesFragment extends PepperSaltFragment {
         }
       }
     }
-  }
-
-  private void showContent() {
-    contentView.setVisibility(View.VISIBLE);
-    progressBar.setVisibility(View.GONE);
-    errorView.setVisibility(View.GONE);
-    emptyView.setVisibility(View.GONE);
-  }
-
-  private void setEmptyView() {
-    contentView.setVisibility(View.GONE);
-    progressBar.setVisibility(View.GONE);
-    errorView.setVisibility(View.GONE);
-    emptyView.setVisibility(View.VISIBLE);
-  }
-
-  private void setErrorView() {
-    contentView.setVisibility(View.GONE);
-    progressBar.setVisibility(View.GONE);
-    emptyView.setVisibility(View.GONE);
-    errorView.setVisibility(View.VISIBLE);
-  }
-
-  private void addFakeData() {
-    Person author = new Person();
-    Message message = new Message();
-
-    author.setFirstName("Lucien");
-    author.setLastName("Bramart");
-    author.setUsername("bramar_l");
-    author.setImageUrl("https://avatars.slack-edge.com/2016-01-06/17850350192_00b38f75688300858435_192.jpg");
-    author.setPoints(10);
-    message.setAuthor(author);
-    message.setTime("2016-15-08 18:54:42");
-    message.setMessage("Bonjour, ceci est un test de la team PepperSalt Android. Ceci est un message allongé afin de prendre plus d'espace");
-
-    for (int i = 0; i < 7; ++i) {
-      data.add(message);
-    }
-    adapter.setData(data);
   }
 }
