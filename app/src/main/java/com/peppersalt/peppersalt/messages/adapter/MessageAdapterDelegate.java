@@ -15,6 +15,8 @@ import com.peppersalt.peppersalt.api.model.Message;
 import com.peppersalt.peppersalt.api.model.Person;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import butterknife.Bind;
@@ -47,6 +49,8 @@ public class MessageAdapterDelegate extends AbsAdapterDelegate<List<Object>> {
     MessageViewHolder vh = (MessageViewHolder) holder;
     Message message = (Message) items.get(position);
     Person author = message.getAuthor();
+    DateFormat dateFormat = new SimpleDateFormat("MM/dd HH:mm");
+
     if (author != null) {
       String authorName = String.format("%s %s", author.getFirstName(), author.getLastName());
       vh.messageAuthorName.setText(authorName);
@@ -64,7 +68,7 @@ public class MessageAdapterDelegate extends AbsAdapterDelegate<List<Object>> {
       ((View)vh.authorImageView.getParent())
           .setBackgroundColor(context.getResources().getColor(R.color.background_fragments_color));
     }
-    vh.messageTime.setText(message.getTime());
+    vh.messageTime.setText(dateFormat.format(message.getTime()));
     vh.message.setText(message.getMessage());
   }
 
