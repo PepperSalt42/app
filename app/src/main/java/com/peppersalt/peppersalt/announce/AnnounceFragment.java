@@ -7,14 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.peppersalt.peppersalt.R;
 import com.peppersalt.peppersalt.api.RestClient;
 import com.peppersalt.peppersalt.api.RestService;
 import com.peppersalt.peppersalt.api.model.Announce;
-import com.peppersalt.peppersalt.base.PepperSaltFragment;
+import com.peppersalt.peppersalt.base.PepperSaltLceFragment;
 import com.peppersalt.peppersalt.utils.RoundedTransformation;
 import com.squareup.picasso.Picasso;
 
@@ -24,16 +22,11 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class AnnounceFragment extends PepperSaltFragment {
+public class AnnounceFragment extends PepperSaltLceFragment {
 
   @Bind(R.id.announceImage) ImageView announceImageView;
-  @Bind(R.id.progress_bar) ProgressBar progressBar;
-  @Bind(R.id.empty_view) TextView emptyView;
-  @Bind(R.id.error_view) TextView errorView;
 
-  private String url1;
-  private boolean url1Changed = true;
-  private Context context;
+  private String currentUrl;
 
   private static int REFRESH_TIME = 10000;
 
@@ -65,15 +58,15 @@ public class AnnounceFragment extends PepperSaltFragment {
     service.getLastImage(new Callback<Announce>() {
       @Override
       public void success(Announce announce, Response response) {
-        String url = announce.getImageUrl();
+        String newUrl = announce.getImageUrl();
         Context context = view.getContext();
 
-        if (!url.equals(url1)) {
+        if (!newUrl.equals(currentUrl)) {
           int radius = (int) context.getResources().getDimension(R.dimen.announce_corner_radius);
-          url1 = url;
+          currentUrl = newUrl;
 
           Picasso.with(context)
-              .load(url1)
+              .load(currentUrl)
               .error(R.drawable.background_fragment_default)
               .transform(new RoundedTransformation(radius, 0))
               .into(announceImageView);
@@ -86,26 +79,5 @@ public class AnnounceFragment extends PepperSaltFragment {
         showError();
       }
     });
-  }
-
-  private void showContent() {
-    announceImageView.setVisibility(View.VISIBLE);
-    progressBar.setVisibility(View.GONE);
-    errorView.setVisibility(View.GONE);
-    emptyView.setVisibility(View.GONE);
-  }
-
-  private void showEmpty() {
-    announceImageView.setVisibility(View.GONE);
-    progressBar.setVisibility(View.GONE);
-    errorView.setVisibility(View.GONE);
-    emptyView.setVisibility(View.VISIBLE);
-  }
-
-  private void showError() {
-    announceImageView.setVisibility(View.GONE);
-    progressBar.setVisibility(View.GONE);
-    emptyView.setVisibility(View.GONE);
-    errorView.setVisibility(View.VISIBLE);
   }
 }
