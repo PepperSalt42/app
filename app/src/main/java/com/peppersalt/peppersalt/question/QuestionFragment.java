@@ -68,23 +68,7 @@ public class QuestionFragment extends PepperSaltLceFragment {
           showEmpty();
           return;
         }
-        questionView.setText(question.getDescription());
-
-        answer1View.setText(String.format("1. %s", answers.get(0)));
-        answer2View.setText(String.format("2. %s", answers.get(1)));
-        switch (answers.size()) {
-          default:
-            answer3View.setText("");
-            answer4View.setText("");
-          case 3:
-            answer3View.setText(String.format("3. %s", answers.get(2)));
-            answer4View.setText("");
-            break;
-          case 4:
-            answer3View.setText(String.format("3. %s", answers.get(2)));
-            answer4View.setText(String.format("4. %s", answers.get(3)));
-            break;
-        }
+        setView(question, answers);
         showContent();
       }
 
@@ -98,5 +82,24 @@ public class QuestionFragment extends PepperSaltLceFragment {
         }
       }
     });
+  }
+
+  private void setView(Question question, List<String> answers) {
+    questionView.setText(question.getDescription());
+    answer1View.setText(String.format("1. %s", answers.get(0)));
+    answer2View.setText(String.format("2. %s", answers.get(1)));
+    switch (answers.size()) {
+      default:
+        answer3View.setText("");
+        answer4View.setText("");
+      case 3:
+        answer3View.setText(String.format("3. %s", answers.get(2)));
+        answer4View.setText("");
+        break;
+      case 4:
+        answer3View.setText(String.format("3. %s", answers.get(2)));
+        answer4View.setText(String.format("4. %s", answers.get(3)));
+        break;
+    }
   }
 }

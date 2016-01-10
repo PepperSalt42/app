@@ -79,52 +79,82 @@ public class MessagesFragment extends PepperSaltLceFragment {
     service.getMessages(count, new Callback<List<Message>>() {
       @Override
       public void success(final List<Message> messages, Response response) {
-        final List<Person> people = new ArrayList<>();
+        final List<Integer> authorsIds;
+        final List<Person> authors = new ArrayList<>();
 
-        if (messages.size() == 0) {
+        if (messages == null || messages.size() == 0) {
           showEmpty();
           return ;
         }
-        for (final Message message : messages) {
-          int messageAuthorId = message.getAuthorId();
-          boolean isAlreadyGetted = false;
-
-          for (Person person : people) {
-            if (person.getId() == messageAuthorId) {
-              isAlreadyGetted = true;
-              break ;
-            }
-          }
-          if (!isAlreadyGetted) {
-            service.getUser(message.getAuthorId(), new Callback<Person>() {
-              @Override
-              public void success(Person person, Response response) {
-                people.add(person);
-                setAuthorToMessage(messages, people);
-                List<Object> data = new ArrayList<>();
-                data.addAll(messages);
-                adapter.setData(data);
-                showContent();
-              }
-
-              @Override
-              public void failure(RetrofitError error) {
-                showError();
-              }
-            });
-          }
+        authorsIds = getAuthors(messages);
+        for (Integer id : authorsIds) {
+          downloadUser(id, service, authors, authorsIds, messages);
         }
       }
 
       @Override
       public void failure(RetrofitError error) {
-        adapter.setData(new ArrayList<Object>());
+        adapter.setData(new ArrayList<>());
         showError();
       }
     });
   }
 
-  private void setAuthorToMessage(List<Message> messages, List<Person> people) {
+  private void downloadUser(int id, RestService service, final List<Person> authors,
+                            final List<Integer> authorsIds, final List<Message> messages) {
+    service.getUser(id, new Callback<Person>() {
+      @Override
+      public void success(Person person, Response response) {
+        boolean areAllAuthorsDownloaded = true;
+
+        authors.add(person);
+        for (Integer authorId : authorsIds) {
+          boolean isAuthorDownloaded = false;
+
+          for (Person author : authors) {
+            if (authorId.equals(author.getId())) {
+              isAuthorDownloaded = true;
+              break ;
+            }
+          }
+          if (!isAuthorDownloaded) {
+            areAllAuthorsDownloaded = false;
+            break ;
+          }
+        }
+
+        if (areAllAuthorsDownloaded) {
+          setAuthorsToMessages(messages, authors);
+          setData(messages);
+        }
+      }
+
+      @Override
+      public void failure(RetrofitError error) {
+        showError();
+      }
+    });
+  }
+
+  private void setData(List<Message> messages) {
+    List<Object> data = new ArrayList<>();
+    data.addAll(messages);
+      adapter.setData(data);
+      showContent();
+  }
+
+  private List<Integer> getAuthors(List<Message> messages) {
+    List<Integer> authorsIds = new ArrayList<>();
+
+    for (Message message : messages) {
+      if (!authorsIds.contains(message.getAuthorId())) {
+        authorsIds.add(message.getAuthorId());
+      }
+    }
+    return authorsIds;
+  }
+
+  private void setAuthorsToMessages(List<Message> messages, List<Person> people) {
     for (Message message : messages) {
       for (Person person : people) {
         if (message.getAuthorId() == person.getId()) {
