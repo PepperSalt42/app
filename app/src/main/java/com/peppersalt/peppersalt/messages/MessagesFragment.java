@@ -74,9 +74,9 @@ public class MessagesFragment extends PepperSaltLceFragment {
 
   private void loadData() {
     final RestService service = RestClient.getInstance().getRestService();
-    int count = 8;
+    final int count = 7;
 
-    service.getMessages(new Callback<List<Message>>() {
+    service.getMessages(count, new Callback<List<Message>>() {
       @Override
       public void success(final List<Message> messages, Response response) {
         final List<Person> people = new ArrayList<>();
