@@ -92,6 +92,7 @@ public class QuestionFragment extends PepperSaltLceFragment {
       default:
         answer3View.setText("");
         answer4View.setText("");
+        break;
       case 3:
         answer3View.setText(String.format("3. %s", answers.get(2)));
         answer4View.setText("");
