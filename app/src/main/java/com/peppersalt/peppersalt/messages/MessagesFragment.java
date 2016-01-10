@@ -139,8 +139,10 @@ public class MessagesFragment extends PepperSaltLceFragment {
   private void setData(List<Message> messages) {
     List<Object> data = new ArrayList<>();
     data.addAll(messages);
+    if (!adapter.getData().equals(data)) {
       adapter.setData(data);
       showContent();
+    }
   }
 
   private List<Integer> getAuthors(List<Message> messages) {
