@@ -30,7 +30,7 @@ public class MessagesFragment extends PepperSaltLceFragment {
 
   @Bind(R.id.messagesRecyclerView) RecyclerView messagesRecyclerView;
 
-  private static int REFRESH_TIME = 5000;
+  private static int REFRESH_TIME = 4000;
 
   private Context context;
   private MessagesAdapter adapter;

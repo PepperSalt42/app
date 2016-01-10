@@ -31,7 +31,7 @@ public class QuestionFragment extends PepperSaltLceFragment {
   @Bind(R.id.answer3) TextView answer3View;
   @Bind(R.id.answer4) TextView answer4View;
 
-  private static int REFRESH_DELAY = 10000;
+  private static int REFRESH_DELAY = 60000;
 
   @Nullable
   @Override
