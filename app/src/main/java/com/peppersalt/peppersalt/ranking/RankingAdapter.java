@@ -70,6 +70,7 @@ public class RankingAdapter extends RecyclerView.Adapter {
 
   public void setData(List<Person> data) {
     this.data = data;
+    notifyDataSetChanged();
   }
 
   class RankingCellViewHolder extends RecyclerView.ViewHolder {
