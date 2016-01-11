@@ -16,7 +16,7 @@ public class Message {
   @SerializedName("Message")
   private String message;
 
-  @SerializedName("CreatedAt")
+  @SerializedName("SentAt")
   private Date time;
 
   public Person getAuthor() {
