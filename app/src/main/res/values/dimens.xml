@@ -13,7 +13,8 @@
     <dimen name="background_corner_radius">10dp</dimen>
     <dimen name="announce_corner_radius">20dp</dimen>
     <dimen name="text_message_title">18sp</dimen>
-    <dimen name="text_message_size">11sp</dimen>
+    <dimen name="text_message_size">12sp</dimen>
+    <dimen name="textView_message_minHeight">20dp</dimen>
     <dimen name="text_date_time_size">10sp</dimen>
     <dimen name="text_rank_size">30sp</dimen>
     <dimen name="text_question_size">16sp</dimen>

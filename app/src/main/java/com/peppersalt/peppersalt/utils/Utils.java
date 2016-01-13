@@ -15,10 +15,24 @@
 package com.peppersalt.peppersalt.utils;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Point;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 import android.widget.Toast;
+
+import com.peppersalt.peppersalt.R;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A collection of utility methods, all static.
@@ -62,6 +76,20 @@ public class Utils {
   }
 
   /**
+   * This method converts device specific pixels to density independent pixels.
+   *
+   * @param px A value in px (pixels) unit. Which we need to convert into db
+   * @param context Context to get resources and device specific display metrics
+   * @return A float value to represent dp equivalent to px value
+   */
+  public static float convertPixelsToDp(float px, Context context){
+    Resources resources = context.getResources();
+    DisplayMetrics metrics = resources.getDisplayMetrics();
+    float dp = px / (metrics.densityDpi / 160f);
+    return dp;
+  }
+
+  /**
    * Formats time in milliseconds to hh:mm:ss string format.
    */
   public static String formatMillis(int millis) {
@@ -89,5 +117,48 @@ public class Utils {
       result += "0" + sec;
     }
     return result;
+  }
+
+  public static Map<String, String> getEmojisFromJsonArray(Context context) {
+    JSONArray jsonArrayEmojis = getJsonFromByteArray(context);
+    Map<String, String> emojis = new HashMap<>();
+
+    try {
+      for (int i = 0; i < jsonArrayEmojis.length(); ++i) {
+        JSONObject jsonObject = jsonArrayEmojis.getJSONObject(i);
+
+        emojis.put(
+            String.format(":%s:", jsonObject.getString("short_name")),
+            String.format("[%s]", jsonObject.getString("unified").toLowerCase()));
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return emojis;
+  }
+
+  private static JSONArray getJsonFromByteArray(Context context) {
+    InputStream inputStream = context.getResources().openRawResource(R.raw.emoji_pretty);
+    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+    int ctr;
+
+    try {
+      ctr = inputStream.read();
+      while (ctr != -1) {
+        byteArrayOutputStream.write(ctr);
+        ctr = inputStream.read();
+      }
+      inputStream.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    Log.v("Text Data", byteArrayOutputStream.toString());
+    try {
+      return new JSONArray(byteArrayOutputStream.toString());
+    }
+    catch (Exception e) {
+      e.printStackTrace();
+    }
+    return null;
   }
 }

@@ -13,11 +13,15 @@ import com.hannesdorfmann.adapterdelegates.AbsAdapterDelegate;
 import com.peppersalt.peppersalt.R;
 import com.peppersalt.peppersalt.api.model.Message;
 import com.peppersalt.peppersalt.api.model.Person;
+import com.peppersalt.peppersalt.emoji.customview.EmojiTextView;
+import com.peppersalt.peppersalt.emoji.EmojiParser;
+import com.peppersalt.peppersalt.utils.Utils;
 import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -25,10 +29,12 @@ import butterknife.ButterKnife;
 public class MessageAdapterDelegate extends AbsAdapterDelegate<List<Object>> {
 
   private Context context;
+  private Map<String, String> emojis;
 
   public MessageAdapterDelegate(View view, int viewType) {
     super(viewType);
     this.context = view.getContext();
+    emojis = Utils.getEmojisFromJsonArray(context);
   }
 
   @Override
@@ -69,14 +75,14 @@ public class MessageAdapterDelegate extends AbsAdapterDelegate<List<Object>> {
           .setBackgroundColor(context.getResources().getColor(R.color.background_fragments_color));
     }
     vh.messageTime.setText(dateFormat.format(message.getTime()));
-    vh.message.setText(message.getMessage());
+    vh.message.setText(EmojiParser.demojizedText(emojis, message.getMessage()));
   }
 
   class MessageViewHolder extends RecyclerView.ViewHolder {
     @Bind(R.id.messageAuthorImage) ImageView authorImageView;
     @Bind(R.id.messageAuthor) TextView messageAuthorName;
     @Bind(R.id.messageTime) TextView messageTime;
-    @Bind(R.id.message) TextView message;
+    @Bind(R.id.message) EmojiTextView message;
 
     public MessageViewHolder(View itemView) {
       super(itemView);
