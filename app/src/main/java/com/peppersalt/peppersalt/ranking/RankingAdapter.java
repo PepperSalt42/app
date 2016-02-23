@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.peppersalt.peppersalt.R;
 import com.peppersalt.peppersalt.api.model.Person;
+import com.peppersalt.peppersalt.utils.RoundedTransformation;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -41,6 +42,8 @@ public class RankingAdapter extends RecyclerView.Adapter {
     Picasso.with(context)
         .load(person.getImageUrl())
         .error(R.drawable.unknown)
+        .transform(new RoundedTransformation(
+            (int)context.getResources().getDimension(R.dimen.avatar_corner_radius), 0))
         .into(vh.avatarIv);
 
     switch (rank) {

@@ -67,7 +67,7 @@ public class AnnounceFragment extends PepperSaltLceFragment {
 
           Picasso.with(context)
               .load(currentUrl)
-              .error(R.drawable.background_fragment_default)
+              .error(R.drawable.background_fragment_default_rounded_top)
               .transform(new RoundedTransformation(radius, 0))
               .into(announceImageView);
         }

@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/keyline_05"
-    android:background="@drawable/background_fragment_default"
+    android:background="@drawable/background_fragment_default_rounded_top"
     android:orientation="horizontal"
     android:padding="@dimen/keyline_1"
     >

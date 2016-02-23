@@ -15,6 +15,7 @@ import com.peppersalt.peppersalt.api.model.Message;
 import com.peppersalt.peppersalt.api.model.Person;
 import com.peppersalt.peppersalt.emoji.customview.EmojiTextView;
 import com.peppersalt.peppersalt.emoji.EmojiParser;
+import com.peppersalt.peppersalt.utils.RoundedTransformation;
 import com.peppersalt.peppersalt.utils.Utils;
 import com.squareup.picasso.Picasso;
 
@@ -63,6 +64,8 @@ public class MessageAdapterDelegate extends AbsAdapterDelegate<List<Object>> {
       Picasso.with(context)
           .load(author.getImageUrl())
           .error(R.drawable.unknown)
+          .transform(new RoundedTransformation(
+              (int)context.getResources().getDimension(R.dimen.avatar_corner_radius), 0))
           .into(vh.authorImageView);
     }
 

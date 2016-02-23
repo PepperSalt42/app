@@ -11,6 +11,8 @@
     <dimen name="keyline_2">12dp</dimen>
 
     <dimen name="background_corner_radius">10dp</dimen>
+    <dimen name="avatar_corner_radius">10dp</dimen>
+    <dimen name="foreground_listview_margin">5dp</dimen>
     <dimen name="announce_corner_radius">20dp</dimen>
     <dimen name="text_message_title">18sp</dimen>
     <dimen name="text_message_size">12sp</dimen>
